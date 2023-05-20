@@ -1,9 +1,6 @@
 package com.company.shopping.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "user_info")
 public class User {
 
     @Id
@@ -22,7 +20,8 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private String emailId;
+    private String email;
     private int mobile;
     private String password;
+    private String address;
 }
