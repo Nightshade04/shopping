@@ -25,8 +25,13 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signUp() {
-        return null;
+    public ResponseEntity<String> signUp(@RequestBody String input) {
+        try {
+            String userResponse =userService.signUp(input);
+            return new ResponseEntity<>(userResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

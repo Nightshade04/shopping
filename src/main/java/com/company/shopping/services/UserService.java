@@ -38,4 +38,37 @@ public class UserService {
             throw new Exception(String.format("User with ID: %s does not exist", userId));
         }
     }
+
+    public String signUp(String input) throws Exception {
+        JsonObject jsonObject = new Gson().fromJson(input, JsonObject.class);
+        String firstName = jsonObject.get("firstName").getAsString();
+        String lastName = jsonObject.get("lastName").getAsString();
+        String email = jsonObject.get("email").getAsString();
+        String password = jsonObject.get("password").getAsString();
+        int mobile = jsonObject.get("mobile").getAsInt();
+
+        try{
+            Optional<User> userPresent = userRepository.getUserByEmail(email);
+            String message = "";
+            if (userPresent.isEmpty()) {
+                User user = new User();
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setMobile(mobile);
+                user.setPassword(password);
+                user.setAddress("");
+
+                userRepository.save(user);
+                message = "SignUp successful.";
+                return message;
+            } else {
+                throw new Exception(String.format("Email Id: %s already exists.", email));
+            }
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+    }
 }
