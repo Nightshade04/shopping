@@ -47,7 +47,7 @@ public class UserService {
         String password = jsonObject.get("password").getAsString();
         int mobile = jsonObject.get("mobile").getAsInt();
 
-        try{
+        try {
             Optional<User> userPresent = userRepository.getUserByEmail(email);
             String message = "";
             if (userPresent.isEmpty()) {
@@ -65,9 +65,7 @@ public class UserService {
             } else {
                 throw new Exception(String.format("Email Id: %s already exists.", email));
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             throw e;
         }
     }

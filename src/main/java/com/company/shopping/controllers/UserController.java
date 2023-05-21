@@ -17,7 +17,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody String input) {
         try {
-            String userResponse =userService.login(input);
+            String userResponse = userService.login(input);
             return new ResponseEntity<>(userResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -27,7 +27,7 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody String input) {
         try {
-            String userResponse =userService.signUp(input);
+            String userResponse = userService.signUp(input);
             return new ResponseEntity<>(userResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
